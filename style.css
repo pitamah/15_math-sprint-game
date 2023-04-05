@@ -1,29 +1,28 @@
-@import url("https://fonts.googleapis.com/css?family=Oxanium|PT+Mono&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 * {
   box-sizing: border-box;
 }
  
 :root {
-  --primary-color: dodgerblue;
-  --select-color: dodgerblue;
-  --success: rgb(15, 158, 2);
-  --danger: rgb(214, 23, 23);
+  --primary-color: #57379A;
+  --secondary-color: #486EDD;
+  --select-color: #57379A;
+  --success: #29CC6A;
+  --danger: #FF3399;
 }
 
 body {
   margin: 0;
-  font-family: PT Mono, sans-serif;
+  font-family: Poppins, sans-serif;
   overflow: hidden;
   display: flex;
   justify-content: center;
   height: 100vh;
   background: #e8e8e8;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='%23161616' fill-opacity='0.1'%3E%3Cpath fill-rule='evenodd' d='M11 0l5 20H6l5-20zm42 31a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM0 72h40v4H0v-4zm0-8h31v4H0v-4zm20-16h20v4H20v-4zM0 56h40v4H0v-4zm63-25a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm10 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM53 41a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm10 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm10 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-30 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-28-8a5 5 0 0 0-10 0h10zm10 0a5 5 0 0 1-10 0h10zM56 5a5 5 0 0 0-10 0h10zm10 0a5 5 0 0 1-10 0h10zm-3 46a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm10 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM21 0l5 20H16l5-20zm43 64v-4h-4v4h-4v4h4v4h4v-4h4v-4h-4zM36 13h4v4h-4v-4zm4 4h4v4h-4v-4zm-4 4h4v4h-4v-4zm8-8h4v4h-4v-4z'/%3E%3C/g%3E%3C/svg%3E");
 }
 
 .game-container {
-  border: 1px solid black;
   box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.5);
   width: 530px;
   height: 750px;
@@ -36,8 +35,8 @@ body {
 .header {
   background: var(--primary-color);
   color: white;
-  font-family: Oxanium, sans-serif;
-  font-size: 24px;
+  font-family: Poppins, sans-serif;
+  font-size: 18px;
   text-shadow: 1px 2px 2px black;
   letter-spacing: 2px;
   height: 100px;
@@ -55,7 +54,7 @@ body {
 input[type="radio"] {
   opacity: 0;
   width: 100%;
-  height: 75px;
+  height: 50px;
   position: relative;
   top: -40px;
   cursor: pointer;
@@ -72,26 +71,27 @@ input[type="radio"] {
   height: 75px;
   margin: 25px;
   cursor: pointer;
-  border: 2px solid black;
+  border: 2px solid var(--primary-color);
   border-radius: 5px;
 }
 
 label {
   position: relative;
-  top: 20px;
+  top: 12px;
   left: 20px;
   font-size: 30px;
 }
 
 .selected-label {
-  background: var(--select-color);
+  background: var(--secondary-color);
+  border: 1px solid var(--secondary-color);
   color: white;
 }
 
 .best-score {
   position: relative;
   top: -100px;
-  left: 330px;
+  left: 350px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -148,9 +148,9 @@ label {
 }
 
 .selected-item {
-  background: var(--select-color);
+  background: var(--secondary-color);
   position: fixed;
-  top: 443px;
+  top: 450px;
   z-index: -1;
   width: 529px;
   height: 80px;
@@ -160,7 +160,7 @@ label {
 .selection-footer {
   width: 100%;
   height: 90px;
-  background: rgba(0, 0, 0, 1);
+  background: #DCE4EC;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -176,7 +176,7 @@ button {
   height: 50px;
   border-radius: 5px;
   font-size: 25px;
-  font-family: Oxanium, sans-serif;
+  font-family: Poppins, sans-serif;
   color: white;
   border: none;
   outline: none;
@@ -217,6 +217,7 @@ button:active {
   text-align: center;
   user-select: none;
   cursor: pointer;
+  color: var(--primary-color);
 }
 
 /* Score Page ------------------------- */
@@ -276,11 +277,11 @@ button:active {
   }
 
   .selected-item {
-    top: 345px;
+    top: 349px;
   }
 
   .header {
-    font-size: 1.2rem;
+    font-size: 1.0rem;
   }
 
   .countdown {
@@ -297,12 +298,14 @@ button:active {
   }
 
   label {
-    font-size: 1.7rem;
+    font-size: 1.5rem;
+    top: 18px;
   }
 
   .best-score {
     font-size: 1rem;
-    left: 245px;
+    left: 260px;
+    top:-88px;
   }
 
   .selection-footer {
@@ -313,6 +316,16 @@ button:active {
 /* Media Query: iPhone */
 @media screen and (max-width: 376px) {
   .best-score {
-    left: 232px;
+    left: 240px;
+    top: -88px;
+  }
+
+  .selected-item {
+    top: 349px;
+  }
+
+  label {
+    top: 16px;
   }
 }
+
