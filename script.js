@@ -173,38 +173,78 @@ function getRandomInt(max) {
   return Math.floor(Math.random() * Math.floor(max));
 }
 
+function getRandomNumber() {
+  return Math.floor(Math.random() * 10) + 1;
+}
+
 // Create Correct/Incorrect Random Equations
 function createEquations() {
-  // Randomly choose how many correct equations there should be
-  const correctEquations = getRandomInt(questionAmount);
-  console.log('correct Eqs', correctEquations);
-  // Set amount of wrong equations
-  const wrongEquations = questionAmount - correctEquations;
-  console.log('Wrong Eqs', wrongEquations);
-  // Loop through, multiply random numbers up to 9, push to array
-  for (let i = 0; i < correctEquations; i++) {
-    firstNumber = getRandomInt(9);
-    secondNumber = getRandomInt(9);
-    const equationValue = firstNumber * secondNumber;
-    const equation = `${firstNumber} x ${secondNumber} = ${equationValue}`;
-    equationObject = { value: equation, evaluated: 'true' };
-    equationsArray.push(equationObject);
-  }
-  // Loop through, mess with the equation results, push to array
-  for (let i = 0; i < wrongEquations; i++) {
-    firstNumber = getRandomInt(9);
-    secondNumber = getRandomInt(9);
-    const equationValue = firstNumber * secondNumber;
-    wrongFormat[0] = `${firstNumber} x ${secondNumber + 1} = ${equationValue}`;
-    wrongFormat[1] = `${firstNumber} x ${secondNumber} = ${equationValue - 1}`;
-    wrongFormat[2] = `${firstNumber + 1} x ${secondNumber} = ${equationValue}`;
-    const formatChoice = getRandomInt(3);
-    const equation = wrongFormat[formatChoice];
-    equationObject = { value: equation, evaluated: 'false' };
-    equationsArray.push(equationObject);
+  // Generate random numbers between 1 and 25
+  for (let i = 0; i < questionAmount; i++) {
+    const equationType = Math.floor(Math.random() * 3) + 1;
+    if (equationType === 1) {
+      // Addition
+      firstNumber = getRandomNumber();
+      secondNumber = getRandomNumber();
+      const equationValue = firstNumber + secondNumber;
+      let equationObject;
+      if (Math.random() < 0.5) {
+        // Right equation
+        const equation = `${firstNumber} + ${secondNumber} = ${equationValue}`;
+        equationObject = { value: equation, evaluated: 'true' };
+      } else {
+        // Wrong equation
+        const wrongAnswer = equationValue + getRandomNumber(1, 10);
+        const equation = `${firstNumber} + ${secondNumber} = ${wrongAnswer}`;
+        equationObject = { value: equation, evaluated: 'false' };
+      }
+      equationsArray.push(equationObject);
+    } else if (equationType === 2) {
+      // Subtraction
+      firstNumber = getRandomNumber();
+      secondNumber = getRandomNumber();
+      // Ensure that the first number is greater than the second
+      if (firstNumber < secondNumber) {
+        const temp = firstNumber;
+        firstNumber = secondNumber;
+        secondNumber = temp;
+      }
+      const equationValue = firstNumber - secondNumber;
+      let equationObject;
+      if (Math.random() < 0.5) {
+        // Right equation
+        const equation = `${firstNumber} - ${secondNumber} = ${equationValue}`;
+        equationObject = { value: equation, evaluated: 'true' };
+      } else {
+        // Wrong equation
+        const wrongAnswer = equationValue - getRandomNumber(1, 10);
+        const equation = `${firstNumber} - ${secondNumber} = ${wrongAnswer}`;
+        equationObject = { value: equation, evaluated: 'false' };
+      }
+      equationsArray.push(equationObject);
+    } else {
+      // Division
+      secondNumber = getRandomNumber(1, 10);
+      const multiple = getRandomNumber(2, 5);
+      firstNumber = secondNumber * multiple;
+      const equationValue = firstNumber / secondNumber;
+      let equationObject;
+      if (Math.random() < 0.5) {
+        // Right equation
+        const equation = `${firstNumber} / ${secondNumber} = ${equationValue}`;
+        equationObject = { value: equation, evaluated: 'true' };
+      } else {
+        // Wrong equation
+        const wrongAnswer = equationValue * getRandomNumber(2, 5);
+        const equation = `${firstNumber} / ${secondNumber} = ${wrongAnswer}`;
+        equationObject = { value: equation, evaluated: 'false' };
+      }
+      equationsArray.push(equationObject);
+    }
   }
   shuffle(equationsArray);
 }
+
 
 // Add equastions to DOM
 function equationsToDOM() {
